@@ -1,9 +1,9 @@
-const mysql = require('mysql')
+const mysql = require("mysql")
 const pool = require('../mysql/connection')
 const { handleSQLError } = require('../mysql/error')
 
-const getAllUsers = (req,res) => {
-  pool.query("SELECT * FROM Users ORDER BY id", (err, rows) => {
+const getAllPolls = (req,res) => {
+  pool.query("SELECT * FROM Polls ORDER BY id", (err, rows) => {
     if (err) {
       console.log({ 'message': 'Error occurred: ' + err });
       return handleSQLError(res, err);
@@ -12,36 +12,35 @@ const getAllUsers = (req,res) => {
   })
 }
 
-const getUserById = (req,res) => {
+const getPollsById = (req,res) => {
+  let poll_id = req.params.id;
   let sql = "SELECT * FROM ?? WHERE ?? = ?";
-  const replacements = ['Users', 'id', (req.params.id)];
+  const replacements = ['Polls', 'id', poll_id];
   sql = mysql.format(sql, replacements)
   pool.query(sql, (err, rows) => {
-    if (err) {
+      if (err) {
       console.log({ 'message': 'Error occurred: ' + err });
       return handleSQLError(res, err);
-    }
-    return res.send(rows);
+      }
+      return res.send(rows);
   })
 }
 
-const createUser = (req, res) => {
+const createPoll = (req, res) => {
   let name = req.body.name;
-  let email = req.body.email;
-  let password = req.body.password;
-
-  let sql = "INSERT INTO Users (name , email , password ) VALUES (? , ? , ? )";
-  const replacements = [name , email, password];
+  let user_id = req.body.user_id;
+  let sql = "INSERT INTO Polls (name , user_id) VALUES (? , ?)";
+  const replacements = [name , user_id];
   sql = mysql.format(sql, replacements)
-
+  //console.log(user_id);
   pool.query(sql, (err, results) => {
     if (err) return handleSQLError(res, err)
     return res.json({ newId: results.insertId });
   })
 }
 
-  module.exports = {
-  getAllUsers,
-  getUserById,
-  createUser
+module.exports = {
+  getAllPolls,
+  getPollsById,
+  createPoll
 }
