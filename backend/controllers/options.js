@@ -12,6 +12,19 @@ const getAllOptions = (req,res) => {
   })
 }
 
+const getAllOptionsByPollId = (req,res) => {
+  let sql = "SELECT id, name FROM Options WHERE poll_id = ? ORDER BY id";
+  const replacements = [req.params.poll_id];
+  sql = mysql.format(sql, replacements)
+  pool.query(sql, (err, rows) => {
+    if (err) {
+      console.log({ 'message': 'Error occurred: ' + err });
+      return handleSQLError(res, err);
+    }
+    return res.send(rows);
+  })
+}
+
 const createOption = (req, res) => {
   let poll_id = req.body.poll_id;
   let name = req.body.name;
@@ -53,5 +66,6 @@ module.exports = {
     getAllOptions,
     createOption,
     updateOptionById,
-    deleteOptionsById
+    deleteOptionsById,
+    getAllOptionsByPollId
 }

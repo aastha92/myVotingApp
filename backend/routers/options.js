@@ -3,6 +3,7 @@ const optionsController = require('../controllers/options')
 const router = express.Router()
 
 router.get('/', optionsController.getAllOptions);
+router.get('/polls/:poll_id', optionsController.getAllOptionsByPollId)
 router.post('/', optionsController.createOption);
 router.put('/:id', optionsController.updateOptionById);
 router.delete('/:id', optionsController.deleteOptionsById);

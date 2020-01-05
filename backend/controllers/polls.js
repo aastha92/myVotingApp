@@ -3,7 +3,7 @@ const pool = require('../mysql/connection')
 const { handleSQLError } = require('../mysql/error')
 
 const getAllPolls = (req,res) => {
-  pool.query("SELECT * FROM Polls ORDER BY id", (err, rows) => {
+  pool.query("SELECT * FROM Polls ORDER BY id DESC", (err, rows) => {
     if (err) {
       console.log({ 'message': 'Error occurred: ' + err });
       return handleSQLError(res, err);
@@ -14,7 +14,7 @@ const getAllPolls = (req,res) => {
 
 const getPollsById = (req,res) => {
   let poll_id = req.params.id;
-  let sql = "SELECT * FROM ?? WHERE ?? = ?";
+  let sql = "SELECT * FROM ?? WHERE ?? = ? ";
   const replacements = ['Polls', 'id', poll_id];
   sql = mysql.format(sql, replacements)
   pool.query(sql, (err, rows) => {

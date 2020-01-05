@@ -15,8 +15,8 @@ class Users extends Component {
                     </span>
                 </div>
             )
-        })
-
+        });
+        
         return(
             <div className='user-list'>
                 {usersList}

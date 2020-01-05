@@ -1,13 +1,16 @@
 const express = require('express');
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const usersRouter = require('./routers/users');
 const pollsRouter = require('./routers/polls');
 const optionsRouter = require('./routers/options');
 const votesRouter = require('./routers/votes');
 
+
 const app = express();
 const port = process.env.PORT || 4001;
 
+app.use(cors());
 app.use(bodyParser.json())
 app.use('/users', usersRouter)
 app.use('/polls', pollsRouter)
