@@ -62,10 +62,22 @@ const deleteOptionsById = (req, res) => {
   })
 }
 
+const deleteOptionsByPollId = (req, res) => {
+  let id = req.params.poll_id;
+  let sql = "DELETE FROM Options WHERE poll_id = ?";
+  const replacements = [id];
+  sql = mysql.format(sql,replacements)
+  pool.query(sql, (err, results) => {
+      if (err) return handleSQLError(res, err)
+      return res.json({ message: `Deleted ${results.affectedRows} user(s)` });
+  })
+}
+
 module.exports = {
     getAllOptions,
     createOption,
     updateOptionById,
     deleteOptionsById,
-    getAllOptionsByPollId
+    getAllOptionsByPollId,
+    deleteOptionsByPollId
 }

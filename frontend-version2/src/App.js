@@ -5,6 +5,7 @@ import Polls from './components/Polls';
 import SinglePoll from './components/SinglePoll';
 import CreatePoll from './components/CreatePoll';
 import CreateUser from './components/CreateUser';
+import EditPoll from './components/EditPoll';
 
 class App extends Component{
   render(){
@@ -15,6 +16,7 @@ class App extends Component{
           <Switch>
             <Route exact path='/polls' component={Polls} />
             <Route path='/polls/create' component={CreatePoll} />
+            <Route path='/polls/edit/:poll_id' component={EditPoll} />
             <Route path='/polls/:poll_id' component={SinglePoll} />
             <Route path='/users/create' component={CreateUser} />
           </Switch>

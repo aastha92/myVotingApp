@@ -1,17 +1,42 @@
 import React , {Component} from 'react';
 import axios from 'axios';
 
-class CreatePoll extends Component {
+class EditPoll extends Component{
     constructor(props){
         super(props)
 
         this.state = {
+            option_ids: [],
             user_id: 1,
             name: '',
-            //option1: null,
-            //option2: null
             options: ['','']
         }
+    }
+
+    componentDidMount(){
+        let id = this.props.match.params.poll_id;
+        axios.get('http://localhost:4001/polls/' + id)
+            .then(res => {
+                console.log(res);
+                this.setState({
+                    ['name']: res.data[0].name
+                })
+            })
+
+        axios.get('http://localhost:4001/options/polls/' + id)
+        .then(res => {
+            console.log(res);
+            const optionsnames = res.data.map(option => {return(option.name)})
+            this.setState({
+                ['options']: optionsnames
+            })
+
+            const optionsids = res.data.map(option => {return(option.id)})
+            this.setState({
+                ['option_ids']: optionsids
+            })
+        })
+
     }
 
     changeHandler = (e) => {
@@ -27,17 +52,20 @@ class CreatePoll extends Component {
     addOptionHandler = (e) => {
         e.preventDefault()
         let optionscopy = [...this.state.options,''];
+        let optionidscopy = [...this.state.option_ids,-1];
         this.setState({['options'] : optionscopy})
+        this.setState({['option_ids'] : optionidscopy})
     }
 
     submitHandler = (e) => {
         e.preventDefault()
         console.log(this.state);
+        let id = this.props.match.params.poll_id;
         const postParams = {
             user_id: this.state.user_id,
             name: this.state.name
         }
-        axios.post('http://localhost:4001/polls/', postParams )
+        axios.put('http://localhost:4001/polls/'+id , postParams)
         /* .then(res => {
             console.log(res);
             this.setState({
@@ -45,19 +73,25 @@ class CreatePoll extends Component {
             })
         }) */
         .then(res =>{
-            this.state.options.map(option => {
+            this.state.options.map((option, index) => {
                 const optionsParams = {
-                    poll_id: res.data.newId,
+                    poll_id: id,
                     name: option
                 }
-                axios.post('http://localhost:4001/options/', optionsParams )    
+                const optionid = this.state.option_ids[index]
+                if (optionid > -1) {
+                    axios.put('http://localhost:4001/options/'+optionid, optionsParams )
+                } else {
+                    axios.post('http://localhost:4001/options/', optionsParams )
+                }    
             })
         })
         .catch(err => {
             console.log(err);
-        })    
-        this.props.history.push('/polls')
+        })
+        this.props.history.push('/polls')        
     }
+
 
 
     render() {
@@ -74,7 +108,7 @@ class CreatePoll extends Component {
         return (
             <div className='container'>
                 <div className='container'>
-                    <h4 className='center'>New Poll</h4>
+                    <h4 className='center'>Edit Poll</h4>
                 </div>
                 <form onSubmit={this.submitHandler}>
                     <div>
@@ -84,14 +118,14 @@ class CreatePoll extends Component {
 
                     {optionslist}
 
-                    <button className='btn orange' onClick={this.addOptionHandler} >
+                    <button className='btn orange' onClick={this.addOptionHandler}>
                         <span >Add Option</span>
                         <i className="material-icons right">add</i>
                     </button><br /><br />
 
                     <button className='btn indigo' type='submit'>
-                        <span >Sumbit Poll</span>
-                        <i className="material-icons right">send</i>
+                        <span >update Poll</span>
+                        <i className="material-icons right">update</i>
                     </button>
                 </form> 
             </div>
@@ -99,4 +133,4 @@ class CreatePoll extends Component {
     }
 }
 
-export default CreatePoll;
+export default EditPoll

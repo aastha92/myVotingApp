@@ -57,7 +57,10 @@ class CreateUser extends Component{
                         <input className='right' type='text' name="password" value={password}  onChange={this.changeHandler}/>
                     </div>
 
-                    <button type='submit'>Submit</button>
+                    <button className='btn indigo' type='submit'>
+                        <span >Sumbit</span>
+                        <i className="material-icons right">send</i>
+                    </button>
                 </form>
             </div>
         )

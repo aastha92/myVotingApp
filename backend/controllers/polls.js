@@ -39,8 +39,33 @@ const createPoll = (req, res) => {
   })
 }
 
+const updatePollById = (req, res) => {
+  let id = req.params.id;
+  let name = req.body.name;
+  let sql = "UPDATE Polls SET name = ? WHERE id = ?";
+  const replacements = [name , id];
+  sql = mysql.format(sql, replacements)
+  pool.query(sql, (err, results) => {
+    if (err) return handleSQLError(res, err)
+    return res.status(204).json();
+  })
+}
+
+const deletePollById = (req, res) => {
+  let id = req.params.id;
+  let sql = "DELETE FROM Polls WHERE id = ?";
+  const replacements = [id];
+  sql = mysql.format(sql,replacements)
+  pool.query(sql, (err, results) => {
+      if (err) return handleSQLError(res, err)
+      return res.json({ message: `Deleted ${results.affectedRows} user(s)` });
+  })
+}
+
 module.exports = {
   getAllPolls,
   getPollsById,
-  createPoll
+  createPoll,
+  deletePollById,
+  updatePollById
 }

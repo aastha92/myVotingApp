@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.smwidth{
+  max-width: 250%;
+  margin: 3px;
+}

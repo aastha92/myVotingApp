@@ -16,20 +16,25 @@ class DisplayVotes extends Component{
             votesCount: []
         }
     }
-
-    componentDidMount(){
+    getVotesCount(){
         axios.get('http://localhost:4001/votes/polls/' + this.state.poll_id)
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 this.setState({
                     ['votesCount']: res.data
                 })
             })
     }
 
+    componentDidMount(){
+        this.getVotesCount()
+    }
+
+    componentDidUpdate(){
+        this.getVotesCount()
+    }
 
     render(){
-
         const votesdata = this.state.votesCount.map(voteobj => {
             return({
                 y: voteobj.total_votes, label: voteobj.name
@@ -53,7 +58,6 @@ class DisplayVotes extends Component{
 				dataPoints: votesdata
 			}]
 		}
-        
         /* console.log(options)
 
         const voteslist = this.state.votesCount.map(voteobj => {
@@ -62,7 +66,6 @@ class DisplayVotes extends Component{
                 <li>{voteobj.name} : {voteobj.total_votes}</li>
             </div>)
         }) */
-
         return (
             <div className='container'>
                 {/* <h4 className='center'>Results</h4>
@@ -75,5 +78,4 @@ class DisplayVotes extends Component{
     }
 }
     
-
 export default DisplayVotes;

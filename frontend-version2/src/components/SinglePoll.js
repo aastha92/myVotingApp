@@ -2,7 +2,6 @@ import React , {Component} from 'react';
 import axios from 'axios';
 import DisplayVotes from './DisplayVotes'
 
-
 class SinglePoll extends Component{
     state = {
         poll : null,
@@ -14,7 +13,7 @@ class SinglePoll extends Component{
         let id = this.props.match.params.poll_id;
         axios.get('http://localhost:4001/polls/' + id)
             .then(res => {
-                console.log(res);
+                //console.log(res);
                 this.setState({
                     ['poll']: res.data[0]
                 })
@@ -22,7 +21,7 @@ class SinglePoll extends Component{
 
         axios.get('http://localhost:4001/options/polls/' + id)
         .then(res => {
-            console.log(res);
+            //console.log(res);
             this.setState({
                 ['options']: res.data
             })
@@ -50,7 +49,7 @@ class SinglePoll extends Component{
 
         axios.post('http://localhost:4001/votes', postParams)
         .then(res => {
-            console.log(res);
+            //console.log(res);
         })
         .catch(err => {
             console.log(err);
@@ -95,10 +94,26 @@ class SinglePoll extends Component{
             <ul className='center'>
                 <form onSubmit={this.submitHandler}>
                     {optionslist}
-                    <button type='submit'>submit</button>
+                    <button className='btn indigo' type='submit'>
+                        <span >Sumbit Result</span>
+                        <i className="material-icons right">send</i>
+                    </button>
+
+                    <br/><br />
+
+                    {/* <a href="#results"> */}
+                        {/* <button className='btn green darken-3' type='submit'>
+                            <span >Show Result</span>
+                            <i className="material-icons right">pie_chart_outlined</i> */}
+                        {/* </button> */}
+                    {/* </a> */}
+
                 </form>
-            </ul>
-            <DisplayVotes  poll_id={this.props.match.params.poll_id}/>
+            </ul><br/><br/>
+            <hr/><br/>
+            {/* <div id='results'>bbbbb</div> */}
+                <DisplayVotes  poll_id={this.props.match.params.poll_id}/>
+            
         </div>
         )
     }
