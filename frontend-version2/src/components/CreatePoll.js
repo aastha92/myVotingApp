@@ -77,22 +77,25 @@ class CreatePoll extends Component {
                     <h4 className='center'>New Poll</h4>
                 </div>
                 <form onSubmit={this.submitHandler}>
-                    <div>
-                        <label className='left'>Poll Title:</label>
-                        <input className='right' type='text' name="name" value={name}  onChange={this.changeHandler}/>
+                    <div className='input-field'>
+                        <input type='text' name="name" value={name}  onChange={this.changeHandler}/>
+                        <label>Poll Title:</label>
                     </div>
 
-                    {optionslist}
+                    {/* <div className='input-field'> */}
+                        {optionslist} 
+                    {/* </div> */}
+                
+                        <button className='btn orange ' onClick={this.addOptionHandler} >
+                            <span >Add Option</span>
+                            <i className="material-icons right">add</i>
+                        </button><br /><br />
 
-                    <button className='btn orange' onClick={this.addOptionHandler} >
-                        <span >Add Option</span>
-                        <i className="material-icons right">add</i>
-                    </button><br /><br />
-
-                    <button className='btn indigo' type='submit'>
-                        <span >Sumbit Poll</span>
-                        <i className="material-icons right">send</i>
-                    </button>
+                        <button className='btn indigo center' type='submit'>
+                            <span >Sumbit Poll</span>
+                            <i className="material-icons right">send</i>
+                        </button>
+            
                 </form> 
             </div>
         )

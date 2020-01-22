@@ -1,8 +1,8 @@
 const mysql = require('mysql')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const pool = require('../sql/connection')
-const { handleSQLError } = require('../sql/error')
+const pool = require('../mysql/connection')
+const { handleSQLError } = require('../mysql/error')
 
 // for bcrypt
 const saltRounds = 10
@@ -26,7 +26,7 @@ const signup = (req, res) => {
 
 const login = (req, res) => {
   const {email, password } = req.body
-  let sql = "SELECT * FROM users WHERE email = ?"
+  let sql = "SELECT * FROM Users WHERE email = ?"
   sql = mysql.format(sql, [ email ])
 
   pool.query(sql, (err, rows) => {

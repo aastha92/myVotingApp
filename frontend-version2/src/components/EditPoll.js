@@ -110,24 +110,24 @@ class EditPoll extends Component{
                 <div className='container'>
                     <h4 className='center'>Edit Poll</h4>
                 </div>
-                <form onSubmit={this.submitHandler}>
-                    <div>
-                        <label className='left'>Poll Title:</label>
-                        <input className='right' type='text' name="name" value={name}  onChange={this.changeHandler}/>
-                    </div>
+                    <form onSubmit={this.submitHandler}>
+                        <div>
+                            <label className='left'>Poll Title:</label>
+                            <input className='right' type='text' name="name" value={name}  onChange={this.changeHandler}/> 
+                        </div>
 
-                    {optionslist}
+                        {optionslist}
 
-                    <button className='btn orange' onClick={this.addOptionHandler}>
-                        <span >Add Option</span>
-                        <i className="material-icons right">add</i>
-                    </button><br /><br />
+                            <button className='btn orange' onClick={this.addOptionHandler}>
+                                <span >Add Option</span>
+                                <i className="material-icons right">add</i>
+                            </button><br /><br />
 
-                    <button className='btn indigo' type='submit'>
-                        <span >update Poll</span>
-                        <i className="material-icons right">update</i>
-                    </button>
-                </form> 
+                            <button className='btn indigo' type='submit'>
+                                <span >update Poll</span>
+                                <i className="material-icons right">update</i>
+                            </button>
+                    </form>  
             </div>
         )
     }

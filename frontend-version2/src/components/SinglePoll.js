@@ -90,29 +90,21 @@ class SinglePoll extends Component{
 
       return (
         <div className="container">
-            <h4 className='center'>{poll}</h4>
+            <div className='row'><h4 className='center'>{poll}</h4></div>
             <ul className='center'>
                 <form onSubmit={this.submitHandler}>
                     {optionslist}
                     <button className='btn indigo' type='submit'>
-                        <span >Sumbit Result</span>
+                        <span>Sumbit Result</span>
                         <i className="material-icons right">send</i>
                     </button>
-
-                    <br/><br />
-
-                    {/* <a href="#results"> */}
-                        {/* <button className='btn green darken-3' type='submit'>
-                            <span >Show Result</span>
-                            <i className="material-icons right">pie_chart_outlined</i> */}
-                        {/* </button> */}
-                    {/* </a> */}
-
                 </form>
-            </ul><br/><br/>
-            <hr/><br/>
-            {/* <div id='results'>bbbbb</div> */}
+            </ul>
+            <hr/>
+            <br/><br/>
+            <div>
                 <DisplayVotes  poll_id={this.props.match.params.poll_id}/>
+            </div>
             
         </div>
         )
