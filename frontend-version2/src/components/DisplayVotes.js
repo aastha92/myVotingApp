@@ -17,7 +17,7 @@ class DisplayVotes extends Component{
         }
     }
     getVotesCount(){
-        axios.get('http://localhost:4001/votes/polls/' + this.state.poll_id)
+        axios.get('https://fluid-tangent-259519.appspot.com/votes/polls/' + this.state.poll_id)
             .then(res => {
                 //console.log(res);
                 this.setState({

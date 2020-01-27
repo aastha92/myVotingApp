@@ -20,7 +20,7 @@ class CreateUser extends Component{
     signupHandler = (e) => {
         e.preventDefault()
         console.log(this.state);
-        axios.post('http://localhost:4001/auth/signup', this.state)
+        axios.post('https://fluid-tangent-259519.appspot.com/auth/signup', this.state)
         .then(res =>{
             console.log(res.data);
             this.props.history.push('/polls')
@@ -41,7 +41,7 @@ class CreateUser extends Component{
             email: this.state.email,
             password: this.state.password
         }
-        axios.post('http://localhost:4001/auth/login', loginParams)
+        axios.post('https://fluid-tangent-259519.appspot.com/auth/login', loginParams)
         .then(res =>{
             console.log(res.data);
             this.props.history.push('/polls')

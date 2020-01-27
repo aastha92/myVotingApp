@@ -15,7 +15,7 @@ class EditPoll extends Component{
 
     componentDidMount(){
         let id = this.props.match.params.poll_id;
-        axios.get('http://localhost:4001/polls/' + id)
+        axios.get('https://fluid-tangent-259519.appspot.com/polls/' + id)
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -23,7 +23,7 @@ class EditPoll extends Component{
                 })
             })
 
-        axios.get('http://localhost:4001/options/polls/' + id)
+        axios.get('https://fluid-tangent-259519.appspot.com/options/polls/' + id)
         .then(res => {
             console.log(res);
             const optionsnames = res.data.map(option => {return(option.name)})
@@ -65,7 +65,7 @@ class EditPoll extends Component{
             user_id: this.state.user_id,
             name: this.state.name
         }
-        axios.put('http://localhost:4001/polls/'+id , postParams)
+        axios.put('https://fluid-tangent-259519.appspot.com/polls/'+id , postParams)
         /* .then(res => {
             console.log(res);
             this.setState({
@@ -80,9 +80,9 @@ class EditPoll extends Component{
                 }
                 const optionid = this.state.option_ids[index]
                 if (optionid > -1) {
-                    axios.put('http://localhost:4001/options/'+optionid, optionsParams )
+                    axios.put('https://fluid-tangent-259519.appspot.com/options/'+optionid, optionsParams )
                 } else {
-                    axios.post('http://localhost:4001/options/', optionsParams )
+                    axios.post('https://fluid-tangent-259519.appspot.com/options/', optionsParams )
                 }    
             })
         })

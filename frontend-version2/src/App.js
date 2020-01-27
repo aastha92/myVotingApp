@@ -18,7 +18,7 @@ class App extends Component{
             <Route path='/polls/create' component={CreatePoll} />
             <Route path='/polls/edit/:poll_id' component={EditPoll} />
             <Route path='/polls/:poll_id' component={SinglePoll} />
-            <Route path='/users/create' component={CreateUser} />
+            {/* <Route path='/users/create' component={CreateUser} /> */}
           </Switch>
         </div>
       </BrowserRouter>

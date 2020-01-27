@@ -11,7 +11,7 @@ class SinglePoll extends Component{
     }
     componentDidMount(){
         let id = this.props.match.params.poll_id;
-        axios.get('http://localhost:4001/polls/' + id)
+        axios.get('https://fluid-tangent-259519.appspot.com/polls/' + id)
             .then(res => {
                 //console.log(res);
                 this.setState({
@@ -19,7 +19,7 @@ class SinglePoll extends Component{
                 })
             })
 
-        axios.get('http://localhost:4001/options/polls/' + id)
+        axios.get('https://fluid-tangent-259519.appspot.com/options/polls/' + id)
         .then(res => {
             //console.log(res);
             this.setState({
@@ -47,7 +47,7 @@ class SinglePoll extends Component{
             poll_id: this.props.match.params.poll_id
         }
 
-        axios.post('http://localhost:4001/votes', postParams)
+        axios.post('https://fluid-tangent-259519.appspot.com/votes', postParams)
         .then(res => {
             //console.log(res);
         })

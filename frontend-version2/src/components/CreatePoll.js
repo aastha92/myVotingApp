@@ -37,7 +37,7 @@ class CreatePoll extends Component {
             user_id: this.state.user_id,
             name: this.state.name
         }
-        axios.post('http://localhost:4001/polls/', postParams )
+        axios.post('https://fluid-tangent-259519.appspot.com/polls/', postParams )
         /* .then(res => {
             console.log(res);
             this.setState({
@@ -50,7 +50,7 @@ class CreatePoll extends Component {
                     poll_id: res.data.newId,
                     name: option
                 }
-                axios.post('http://localhost:4001/options/', optionsParams )    
+                axios.post('https://fluid-tangent-259519.appspot.com/options/', optionsParams )    
             })
         })
         .catch(err => {

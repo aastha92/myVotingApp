@@ -7,7 +7,7 @@ class Polls extends Component{
         polls : []
     }
     /* componentDidMount(){
-        axios.get('http://localhost:4001/polls')
+        axios.get('https://fluid-tangent-259519.appspot.com/polls')
             .then(res => {
                 console.log(res);
                 this.setState({
@@ -17,7 +17,7 @@ class Polls extends Component{
     } */
 
     getpolldata(){
-        axios.get('http://localhost:4001/polls')
+        axios.get('https://fluid-tangent-259519.appspot.com/polls')
             .then(res => {
                 //console.log(res);
                 this.setState({
@@ -36,9 +36,9 @@ class Polls extends Component{
 
     deleteHandler(e,poll_id){
         e.preventDefault()
-        axios.delete('http://localhost:4001/options/delete/poll/' + poll_id)
+        axios.delete('https://fluid-tangent-259519.appspot.com/options/delete/poll/' + poll_id)
         .then(res=>{
-            axios.delete('http://localhost:4001/polls/' + poll_id )
+            axios.delete('https://fluid-tangent-259519.appspot.com/polls/' + poll_id )
         })
         .catch(err =>{
             console.log(err);
@@ -50,7 +50,7 @@ class Polls extends Component{
         const pollsList = polls.length ? 
         (
             polls.map(poll => {
-                const editlink = "polls/edit/"+poll.id;
+                const editlink = "/polls/edit/"+poll.id;
                 return(
                     
                         <Link to={'/polls/' + poll.id}>

@@ -11,13 +11,13 @@ class Navbar extends Component {
                 <nav className="nav-wrapper grey darken-3">
                     <div className='container'>
                         <a className='brand-logo'>My Voting App</a>
-                        <a href="#" className='sidenav-trigger' data-target='slide-out'>
+                        <a href="#" className='sidenav-trigger' data-target='mobile-links'>
                             <i className="material-icons">menu</i>
                         </a>
                         <ul className='right hide-on-med-and-down'>
                             <li><NavLink to='/polls'>Polls</NavLink></li>
                             <li><NavLink to='/polls/create'>New Poll</NavLink></li>
-                            <li><NavLink to='/users/create'>Register</NavLink></li>
+                            {/* <li><NavLink to='/users/create'>Register</NavLink></li> */}
 
                         </ul>
                     </div>
@@ -26,7 +26,7 @@ class Navbar extends Component {
                 <ul className="sidenav" id="mobile-links">
                     <li><NavLink to='/polls'>Polls</NavLink></li>
                     <li><NavLink to='/polls/create'>New Poll</NavLink></li>
-                    <li><NavLink to='/users/create'>Register</NavLink></li>
+                    {/* <li><NavLink to='/users/create'>Register</NavLink></li> */}
                 </ul>
 
             </div>
